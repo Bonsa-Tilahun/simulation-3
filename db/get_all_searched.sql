@@ -1,0 +1,1 @@
+SELECT * from posts p JOIN users u ON p.author_id = u.id where p.title like $1
