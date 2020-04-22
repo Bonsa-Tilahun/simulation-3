@@ -2,8 +2,10 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {loginUser} from '../../ducks/reducer'
 import Axios from 'axios'
+import Logo from '../../assets/helo_logo.png'
 
 import './auth.styles.css'
+
 
 class Auth extends Component {
     constructor() {
@@ -40,13 +42,20 @@ class Auth extends Component {
     }
     render(){
         return(
-            <div className='login-card'>
-                <p>Username</p>
-                <input name='username' type='text' onChange={(e)=>this.handleChange(e)}/>
-                <p>Password</p>
-                <input name='password' type='password' onChange={(e)=>this.handleChange(e)}/>
-                <button onClick={()=>this.handleLogin()}>Login</button>
-                <button onClick={()=>this.handleRegister()}>Register</button>
+            <div className='login-card-container'>
+                <div className='login-card'>
+                    <img className='login-logo' src={Logo} alt="Logo"/>
+                    <h1 className='login-name'>Helo</h1>
+                    <form className='login-form'>
+                        <label htmlFor="username">Username:</label>
+                        <input name='username' type='text' onChange={(e)=>this.handleChange(e)}/> <br/>
+                        <label htmlFor="password">Password:</label>
+                        <input name='password' type='password' onChange={(e)=>this.handleChange(e)}/>
+                    </form>
+                    
+                    <button className='login-btn' onClick={()=>this.handleLogin()}>Login</button>
+                    <button className='login-btn' onClick={()=>this.handleRegister()}>Register</button>
+                </div>
             </div>
         )
     }

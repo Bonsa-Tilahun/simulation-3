@@ -1,5 +1,5 @@
 .nav-container {
-    width: 11vw;
+    width: 7vw;
     height: 100vh;
     position: absolute;
     top: 0;
@@ -14,6 +14,10 @@
 .nav-main {
     height: 45%;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .nav-profile-data {
@@ -27,11 +31,13 @@
 }
 
 .nav-home {
-    width: 100%;
-    height: 12vh;
+    width: auto;
+    height: 7vh;
+    margin: 20px auto;
 }
 
-.nav-home img {
-    width: 100%;
-    height: 12vh;
+.nav-new-post {
+    width: auto;
+    height: 7vh;
+    margin-bottom: 20px;
 }

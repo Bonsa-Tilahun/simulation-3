@@ -1,23 +1,69 @@
-.post-inner-container {
-    width: 100%;
+.post-page-container {
+    width: 93vw;
+    margin-left: 7vw;
+    background-color: #f2f2f2;
+    height: 100vh;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+}
+
+.post-page-inner {
+    width: 70vw;
+    height: 40vh;
+    background-color: white;
+    box-shadow: gray 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     box-shadow: 0px 0px 10px 2px rgba(204, 204, 204, 1);
-    margin-bottom: 10px;
+}
+
+.post-page-meta-data {
+    width: 100%;
+    height: 55px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
     padding: 10px;
 }
 
-.post-info {
+.post-page-info {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
     align-items: center;
 }
 
-.post-profile-img {
-    border-radius: 60px;
-    box-shadow: 0px 0px 10px 2px rgba(204, 204, 204, 1);
+.delete-btn {
+    height: 20px;
+    width: 70px;
+    color: white;
+    background-color: #ff70a4;
+    font-weight: bold;
+    border-radius: 15px;
+}
+
+.pos-page-body {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 10px;
+}
+
+.post-page-profile-img {
     margin-left: 5px;
+    border-radius: 60px;
+}
+
+.post-page-image-url {
+    height: 25vh;
+    width: 30vw;
+    overflow: hidden;
+    margin-right: 6px;
 }

@@ -1,0 +1,1 @@
+Insert into posts (title, img, content, author_id) Values ($2, $3, $4, $1) returning *;

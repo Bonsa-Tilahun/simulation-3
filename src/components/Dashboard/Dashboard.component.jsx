@@ -1,10 +1,9 @@
 import React, {Component} from 'react'
-import Post from '../Post/Post.component'
 import axios from 'axios'
 import searchLogo from '../../assets/search_logo.png'
+import { Link } from 'react-router-dom'
 
 import './dashboard.styles.css'
-import { connect } from 'react-redux'
 
 class Dashboard extends Component {
     constructor() {
@@ -28,12 +27,12 @@ class Dashboard extends Component {
     }
 
     componentDidMount = () =>{
-        axios.get(`/api/posts/${this.props.userId}?userposts=${this.state.myPost}&search=${this.state.searchInput}`)
+        axios.get(`/api/posts?userposts=${this.state.myPost}&search=${this.state.searchInput}`)
         .then(res => {
             this.setState({
                 posts: res.data
             })
-            console.log(res.data)
+            // console.log(res.data)
         })
     }
 
@@ -47,7 +46,7 @@ class Dashboard extends Component {
     }
 
     search = () =>{
-        axios.get(`/api/posts/${this.props.userId}?userposts=${this.state.myPost}&search=${this.state.searchInput}`)
+        axios.get(`/api/posts?userposts=${this.state.myPost}&search=${this.state.searchInput}`)
         .then(res => {
             this.setState({
                 posts: res.data
@@ -57,8 +56,18 @@ class Dashboard extends Component {
 
     render(){
         const posts = this.state.posts.map((post, i) => {
-           return <Post key={i} post={post}/>
-        })
+           return (<Link className='post-inner-container' key={i} to={`/post/${post.post_id}`}>
+                        <div className='post-title'>
+                            <h3>{post.title}</h3>
+                         </div>
+                        <div className='post-info'>
+                            <p>by {post.username}</p>
+                            <img className='post-profile-img' src={post.profile_pic + post.id + '?set=set2&size=50x50'} alt="UserIcon"/>
+                        </div>
+                    </Link>
+                )
+            }
+        )
         return(
             <div className='dashboard-container'>
                 <div className='dashboard-inner'>
@@ -88,7 +97,5 @@ class Dashboard extends Component {
         )
     }
 }
-const mapStateToDashboard = reduxState => {
-    return {userId: reduxState.user.id}
-}
-export default connect(mapStateToDashboard)(Dashboard)
+
+export default Dashboard

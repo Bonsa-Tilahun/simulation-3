@@ -1,9 +1,43 @@
+.login-card-container {
+    width: 100vw;
+    height: 100vh;
+    background: rgb(255, 151, 112);
+    background: linear-gradient(90deg, rgba(255, 151, 112, 1) 43%, rgba(233, 255, 112, 1) 65%);
+    padding: 25vh 30vw;
+}
+
 .login-card {
     width: 40vw;
     height: 50vh;
     background: transparent;
-    box-shadow: 0px 0px 10px 2px rgba(204, 204, 204, 1);
-    position: absolute;
-    top: 25vh;
-    left: 40vw;
+    box-shadow: -4px 1px 5px 2px rgba(0, 0, 0, 0.75);
+    /* margin: 25vh 30vw; */
+    /* margin-top: 10vh; */
+}
+
+.login-logo {
+    margin: 10px;
+}
+
+.login-name {
+    font-size: 4rem;
+    color: white;
+}
+
+.login-form {
+    margin: 10px;
+}
+
+.login-btn {
+    height: 40px;
+    width: 95px;
+    background-color: #403d39;
+    color: white;
+    font-size: 1.1rem;
+    margin: 15px;
+    border-radius: 10px;
+}
+
+input {
+    margin: 5px;
 }

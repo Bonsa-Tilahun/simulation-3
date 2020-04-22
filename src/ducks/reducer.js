@@ -1,4 +1,3 @@
-import axios from 'axios'
 const initialState = {
     user: {},
     isLoggedIn: false
@@ -6,12 +5,13 @@ const initialState = {
 
 const LOGIN_USER = 'LOGIN_USER'
 const LOGOUT_USER = 'LOGOUT_USER'
+const UPDATE_USER = 'UPDATE_USER'
 
-export function loginUser(id, username, profile_pic) {
+export function loginUser(username, profile_pic) {
     console.log("login hit: ", LOGIN_USER)
     return {
         type: LOGIN_USER,
-        payload: { id, username, profile_pic }
+        payload: { username, profile_pic }
     }
 }
 
@@ -22,6 +22,13 @@ export function logoutUser() {
     }
 }
 
+export function updateUser(userObj) {
+    // const userPromise = axios.get('/auth/me')
+    return {
+        type: UPDATE_USER,
+        payload: userObj
+    }
+}
 
 export default function(state = initialState, action) {
     switch (action.type) {
@@ -29,7 +36,8 @@ export default function(state = initialState, action) {
             return {...state, user: action.payload, isLoggedIn: true }
         case LOGOUT_USER:
             return {...state, ...action.payload }
-
+        case UPDATE_USER:
+            return {...state, user: action.payload, isLoggedIn: true }
         default:
             return initialState
     }

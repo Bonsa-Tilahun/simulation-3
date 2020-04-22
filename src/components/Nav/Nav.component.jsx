@@ -1,23 +1,34 @@
 import React, {Component} from 'react'
 import {Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {logoutUser} from '../../ducks/reducer'
+import {logoutUser, updateUser} from '../../ducks/reducer'
 import HomeLogo from '../../assets/home_logo.png'
 import NewPost from '../../assets/new_logo.png'
 import Logout from '../../assets/shut_down.png'
 
 import './nav.styles.css'
+import Axios from 'axios'
 
 class Nav extends Component {
     constructor(props) {
         super(props)
     }
 
+    componentDidMount = ()=>{
+        Axios.get('/auth/me').then(res =>{
+            this.props.updateUser(res.data)
+        }).catch(()=>{
+            this.props.history.push('/')
+        })
+    }
     handleLogout = () =>{
         //TODO--make delete request to destroy session
-        this.props.logoutUser()
-        this.props.history.push('/')
+        Axios.post('/auth/logout').then(()=>{
+            this.props.logoutUser()
+            this.props.history.push('/')
+        }).catch(err=> alert(err))
     }
+    
     render(){
         const {id, username, profile_pic} = this.props
         console.log("my props" , this.props)
@@ -29,15 +40,15 @@ class Nav extends Component {
                         <p>{username}</p>
                     </div>
                     
-                    <Link to='/dashboard' className='nav-home'>
-                        <img src={HomeLogo}/>
+                    <Link to='/dashboard' >
+                        <img className='nav-home' src={HomeLogo}/>
                     </Link>
-                    <Link to='/new' className='nav-new-post'>
-                    <img src={NewPost}/>
+                    <Link to='/new' >
+                    <img className='nav-new-post' src={NewPost}/>
                     </Link>
                 </div>
                 <div onClick={()=> this.handleLogout()} className='nav-logout'>
-                    <img src={Logout} alt=""/>
+                    <img className='nav-new-post' src={Logout} alt=""/>
                 </div>
             </div>
         )
@@ -48,4 +59,4 @@ const mapStateToProps = reduxState => {
     return {id: reduxState.user.id, username: reduxState.user.username, profile_pic: reduxState.user.profile_pic}
 }
 
-export default withRouter(connect(mapStateToProps, {logoutUser})(Nav))
+export default withRouter(connect(mapStateToProps, {logoutUser, updateUser})(Nav))
